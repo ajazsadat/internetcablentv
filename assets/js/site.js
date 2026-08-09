@@ -34,32 +34,55 @@
     }
   }
 
+  function setPending(form, pending) {
+    const button = form.querySelector('button[type="submit"]');
+    form.querySelectorAll("input, select, textarea, button, fieldset").forEach((el) => {
+      el.disabled = pending;
+    });
+    if (button) {
+      button.textContent = pending ? "Sending..." : "Request Free Quote";
+    }
+  }
+
   document.querySelectorAll("form[data-lead-form]").forEach((form) => {
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
       const note = form.querySelector("[data-form-note]");
-      const button = form.querySelector('button[type="submit"]');
+      const success = form.parentElement
+        ? form.parentElement.querySelector("[data-form-success]")
+        : null;
       const formData = new FormData(form);
       const consentInput = form.querySelector('input[name="consent"]');
+      const packages = formData
+        .getAll("packages")
+        .map((value) => String(value))
+        .filter(Boolean);
 
       const payload = {
         name: String(formData.get("name") || "").trim(),
         email: String(formData.get("email") || "").trim(),
         phone: String(formData.get("phone") || "").trim(),
-        zip: String(formData.get("zip") || "").trim(),
-        service: String(formData.get("service") || "").trim(),
+        address: String(formData.get("address") || formData.get("zip") || "").trim(),
+        provider: String(formData.get("provider") || "").trim(),
+        usage: String(formData.get("usage") || "").trim(),
+        packages,
         message: String(formData.get("message") || "").trim(),
         source: form.getAttribute("data-form-source") || "website",
         consent: !!(consentInput && consentInput.checked),
       };
 
       if (note) {
-        note.textContent = "Sending…";
-        note.style.color = "";
+        note.hidden = true;
+        note.textContent = "";
       }
-      if (button) {
-        button.disabled = true;
-      }
+
+      setPending(form, true);
 
       try {
         const response = await fetch(resolveContactEndpoint(), {
@@ -69,25 +92,29 @@
         });
         const data = await response.json().catch(() => ({}));
         if (!response.ok || !data.ok) {
-          throw new Error(data.error || "Unable to send your message right now.");
+          throw new Error(data.error || "Unable to send your request right now.");
         }
+
         form.reset();
-        if (note) {
+        form.hidden = true;
+        if (success) {
+          success.hidden = false;
+        } else if (note) {
+          note.hidden = false;
+          note.classList.remove("pc-form-error");
           note.textContent =
-            "Thanks — your request was sent. A specialist will follow up shortly.";
+            "Thanks — we received your request. A specialist will follow up shortly.";
         }
       } catch (error) {
         if (note) {
+          note.hidden = false;
+          note.classList.add("pc-form-error");
           note.textContent =
             error && error.message
               ? error.message
-              : "Unable to send your message right now. Please call us instead.";
-          note.style.color = "#c0392b";
+              : "Unable to send your request right now. Please call us or try again.";
         }
-      } finally {
-        if (button) {
-          button.disabled = false;
-        }
+        setPending(form, false);
       }
     });
   });
