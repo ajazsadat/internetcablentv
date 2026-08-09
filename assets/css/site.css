@@ -15,7 +15,15 @@
   --max: 1120px;
   --font-display: "Bricolage Grotesque", sans-serif;
   --font-body: "Manrope", sans-serif;
-  --header-h: 76px;
+  --disclaimer-h: 52px;
+  --nav-h: 76px;
+  --header-h: calc(var(--disclaimer-h) + var(--nav-h));
+}
+
+@media (max-width: 720px) {
+  :root {
+    --disclaimer-h: 72px;
+  }
 }
 
 *,
@@ -84,8 +92,32 @@ a:hover {
   border-bottom: 1px solid var(--line);
 }
 
+.header-disclaimer {
+  background: #07131f;
+  color: rgba(255, 255, 255, 0.86);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.header-disclaimer-inner {
+  min-height: var(--disclaimer-h);
+  display: flex;
+  align-items: center;
+  padding-block: 0.55rem;
+}
+
+.header-disclaimer-inner p {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.header-disclaimer-inner strong {
+  color: #7ce7dc;
+  font-weight: 700;
+}
+
 .header-row {
-  min-height: var(--header-h);
+  min-height: var(--nav-h);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -793,6 +825,27 @@ a:hover {
   margin-top: 2rem;
   padding-top: 1.25rem;
   border-top: 1px solid var(--line);
+}
+
+/* Pre-footer disclaimer (matches pcinternetcable placement) */
+.site-disclaimer {
+  padding: 2rem 0;
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+}
+
+.site-disclaimer h3 {
+  margin: 0 0 0.65rem;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+
+.site-disclaimer p {
+  max-width: 70ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
 }
 
 /* Footer */
