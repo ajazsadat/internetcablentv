@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contact | Internet Cable N TV</title>
-  <meta name="description" content="Contact Internet Cable N TV operated by Zaz International Inc." />
+  <meta name="description" content="Contact Internet Cable N TV at 888-811-2026 for internet, TV, and wireless plan help." />
   <meta name="author" content="Zaz International Inc" />
   <link rel="canonical" href="https://internetcablentv.com/contact/" />
   <link rel="icon" href="../assets/icons/favicon.ico" sizes="any" />
@@ -14,7 +14,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/css/site.css" />
-  
 </head>
 
 <body>
@@ -58,40 +57,121 @@
   <main id="main">
     <section class="page-hero">
       <div class="wrap">
-        <ul class="breadcrumb"><li><a href="../">Home</a></li><li aria-current="page">Contact</li></ul>
-        <h1>Contact Internet Cable N TV</h1>
-        <p>Questions about plans near you? Reach the team at Zaz International Inc.</p>
+        <p class="eyebrow">Contact</p>
+        <h1>Are you looking for new internet services?</h1>
+        <p>Explore plans, pricing, and exclusive offers in your area with a specialist — or get help with an existing account question.</p>
       </div>
     </section>
+
     <section class="section">
-      <div class="wrap contact-layout">
-        <div>
-          <p class="eyebrow">Get in touch</p>
-          <h2 style="font-family:var(--font-display);letter-spacing:-.03em;margin:.2rem 0 1rem">Zaz International Inc</h2>
-          <p>3011 E Cedar Sun Trail, Katy, TX 77449-4650, US</p>
-          <p>Email: <a href="mailto:info@internetcablentv.com">info@internetcablentv.com</a></p>
-          <p>Phone: <a href="tel:8888112026">888-811-2026</a></p>
-          <p><a class="btn btn-secondary" href="../live-agent/">Open live agent</a></p>
+      <div class="wrap contact-grid">
+        <div class="contact-cards">
+          <article class="contact-card">
+            <p class="eyebrow">New service</p>
+            <h2>Speak with an expert</h2>
+            <p>Check availability, compare fiber and other options, and get a free no-obligation quote for your address.</p>
+            <a class="btn btn-primary" href="tel:8888112026">Call 888-811-2026</a>
+          </article>
+
+          <article class="contact-card">
+            <p class="eyebrow">Existing account</p>
+            <h2>Need support?</h2>
+            <p>After activation, billing and technical support are handled by your provider. We can still help with general questions or connect you to the right support path.</p>
+            <a class="btn btn-secondary" href="tel:8888112026">Call Now</a>
+          </article>
+
+          <article class="contact-details">
+            <h3>Organization details</h3>
+            <ul>
+              <li><strong>Company:</strong> Zaz International Inc</li>
+              <li><strong>Phone:</strong> <a href="tel:8888112026">888-811-2026</a></li>
+              <li><strong>Email:</strong> <a href="mailto:info@internetcablentv.com">info@internetcablentv.com</a></li>
+              <li><strong>Address:</strong> 3011 E Cedar Sun Trail, Katy, TX 77449-4650, US</li>
+            </ul>
+          </article>
         </div>
-        <form class="contact-form-light" action="/api/contact.php" method="post" data-lead-form data-form-source="contact-page">
-          <div class="form-grid">
-            <div class="form-two">
-              <label>Name*<input name="name" required /></label>
-              <label>Email*<input name="email" type="email" required /></label>
-            </div>
-            <div class="form-two">
-              <label>Phone*<input name="phone" type="tel" required /></label>
-              <label>ZIP*<input name="zip" required /></label>
-            </div>
-            <label>Message*<textarea name="message" required></textarea></label>
-            <label class="consent">
-              <input type="checkbox" name="consent" required />
-              <span>I agree to receive calls, texts, and emails about service options from Internet Cable N TV (operated by Zaz International Inc), providers, and marketing partners. Consent is not required to purchase. Reply STOP to opt out.</span>
-            </label>
-            <button class="btn btn-primary" type="submit">Send message</button>
-            <p class="form-note" data-form-note style="color:var(--muted)"></p>
+
+        <div>
+          <div class="contact-form-intro">
+            <h2>Request a free quote</h2>
+            <p>Share a few details and we'll follow up with options available near you.</p>
           </div>
-        </form>
+
+          <div class="pc-form-success" data-form-success hidden>
+            <h3>Thanks — we received your request</h3>
+            <p>A specialist will follow up shortly. For faster help, call us now at <a href="tel:8888112026">888-811-2026</a>.</p>
+          </div>
+
+          <form class="pc-contact-form" action="/api/contact.php" method="post" data-lead-form data-form-source="contact-page" novalidate>
+            <div class="pc-form-row">
+              <label>
+                Name
+                <input name="name" type="text" required autocomplete="name" placeholder="Your full name" />
+              </label>
+              <label>
+                Phone
+                <input name="phone" type="tel" required autocomplete="tel" placeholder="(555) 555-5555" />
+              </label>
+            </div>
+
+            <div class="pc-form-row">
+              <label>
+                Email
+                <input name="email" type="email" required autocomplete="email" placeholder="you@email.com" />
+              </label>
+              <label>
+                Address / ZIP
+                <input name="address" type="text" required autocomplete="postal-code" placeholder="Street or ZIP code" />
+              </label>
+            </div>
+
+            <div class="pc-form-row">
+              <label>
+                Current Provider
+                <select name="provider">
+                  <option selected>AT&amp;T</option>
+                  <option>Spectrum</option>
+                  <option>Xfinity</option>
+                  <option>Other</option>
+                  <option>None</option>
+                </select>
+              </label>
+              <label>
+                Devices in Home
+                <select name="usage">
+                  <option selected>1 to 4</option>
+                  <option>5 to 8</option>
+                  <option>8 to 12</option>
+                  <option>12+</option>
+                </select>
+              </label>
+            </div>
+
+            <fieldset>
+              <legend>Select service</legend>
+              <div class="pc-form-checks">
+                <label class="pc-form-check"><input type="checkbox" name="packages" value="Home Internet" checked /> Home Internet</label>
+                <label class="pc-form-check"><input type="checkbox" name="packages" value="Wireless Internet" /> Wireless Internet</label>
+                <label class="pc-form-check"><input type="checkbox" name="packages" value="Business Internet" /> Business Internet</label>
+                <label class="pc-form-check"><input type="checkbox" name="packages" value="Fiber Internet" /> Fiber Internet</label>
+                <label class="pc-form-check"><input type="checkbox" name="packages" value="TV Bundles" /> TV Bundles</label>
+                <label class="pc-form-check"><input type="checkbox" name="packages" value="Home Phone Service" /> Home Phone Service</label>
+              </div>
+            </fieldset>
+
+            <label class="pc-form-consent">
+              <input type="checkbox" name="consent" required />
+              <span>
+                By checking this box, I agree to receive calls, texts, and emails — including by autodialer or prerecorded message — about service options from Internet Cable N TV (operated by Zaz International Inc), providers, and marketing partners. Consent is not required to purchase. Message and data rates may apply. Reply STOP to opt out at any time. See our
+                <a href="../privacy-policy/">privacy policy</a> and
+                <a href="../terms-and-conditions/">terms &amp; conditions</a>.
+              </span>
+            </label>
+
+            <p class="pc-form-error" data-form-note hidden></p>
+            <button type="submit" class="btn btn-primary">Request Free Quote</button>
+          </form>
+        </div>
       </div>
     </section>
   </main>

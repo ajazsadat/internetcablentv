@@ -148,42 +148,86 @@
       <div class="wrap quote-grid">
         <div class="quote-aside">
           <div class="section-head">
-            <p class="eyebrow">Availability</p>
-            <h2>Request options for your address</h2>
-            <p>Send a few details and we’ll follow up with plans that can actually serve your location.</p>
+            <p class="eyebrow">Get a quote</p>
+            <h2>Get A Quote</h2>
+            <p>Share a few details and we’ll follow up with options available near you. Prefer to talk now? Call 888-811-2026 or visit our <a href="live-agent/">live agent</a> page.</p>
           </div>
-          <p>Prefer to talk now? Call <a href="tel:8888112026">(888) 811-2026</a> or open the <a href="live-agent/">live agent page</a>.</p>
+          <ul class="quote-points">
+            <li>Free, no-obligation consultation</li>
+            <li>Availability checked by address or ZIP</li>
+            <li>Help comparing plans and promotions</li>
+          </ul>
         </div>
-        <form class="quote-form" action="/api/contact.php" method="post" data-lead-form data-form-source="home-quote">
-          <div class="form-grid">
-            <div class="form-two">
-              <label>Name*<input name="name" type="text" required autocomplete="name" /></label>
-              <label>Email*<input name="email" type="email" required autocomplete="email" /></label>
-            </div>
-            <div class="form-two">
-              <label>Phone*<input name="phone" type="tel" required autocomplete="tel" /></label>
-              <label>ZIP code*<input name="zip" type="text" required inputmode="numeric" autocomplete="postal-code" /></label>
-            </div>
-            <label>Service interest*
-              <select name="service" required>
-                <option value="">Select a service</option>
-                <option>Home Internet</option>
-                <option>Wireless Internet</option>
-                <option>Fiber Internet</option>
-                <option>Business Internet</option>
-                <option>TV Bundles</option>
-                <option>Home Phone Service</option>
-              </select>
-            </label>
-            <label>Message<textarea name="message" placeholder="Anything we should know?"></textarea></label>
-            <label class="consent">
-              <input type="checkbox" name="consent" required />
-              <span>By checking this box, I agree to receive calls, texts, and emails — including by autodialer or prerecorded message — about service options from Internet Cable N TV (operated by Zaz International Inc), providers, and marketing partners. Consent is not required to purchase. Message and data rates may apply. Reply STOP to opt out anytime.</span>
-            </label>
-            <button class="btn btn-primary" type="submit">Send request</button>
-            <p class="form-note" data-form-note></p>
+        <div>
+          <div class="pc-form-success pc-form-success-on-dark" data-form-success hidden>
+            <h3>Thanks — we received your request</h3>
+            <p>A specialist will follow up shortly. For faster help, call us now at <a href="tel:8888112026">888-811-2026</a>.</p>
           </div>
-        </form>
+          <form class="pc-contact-form pc-contact-form-on-dark" action="/api/contact.php" method="post" data-lead-form data-form-source="home-quote" novalidate>
+            <div class="pc-form-row">
+              <label>
+                Name
+                <input name="name" type="text" required autocomplete="name" placeholder="Your full name" />
+              </label>
+              <label>
+                Phone
+                <input name="phone" type="tel" required autocomplete="tel" placeholder="(555) 555-5555" />
+              </label>
+            </div>
+            <div class="pc-form-row">
+              <label>
+                Email
+                <input name="email" type="email" required autocomplete="email" placeholder="you@email.com" />
+              </label>
+              <label>
+                Address / ZIP
+                <input name="address" type="text" required autocomplete="postal-code" placeholder="Street or ZIP code" />
+              </label>
+            </div>
+            <div class="pc-form-row">
+              <label>
+                Current Provider
+                <select name="provider">
+                  <option selected>AT&amp;T</option>
+                  <option>Spectrum</option>
+                  <option>Xfinity</option>
+                  <option>Other</option>
+                  <option>None</option>
+                </select>
+              </label>
+              <label>
+                Devices in Home
+                <select name="usage">
+                  <option selected>1 to 4</option>
+                  <option>5 to 8</option>
+                  <option>8 to 12</option>
+                  <option>12+</option>
+                </select>
+              </label>
+            </div>
+            <fieldset>
+              <legend>Select service</legend>
+              <div class="pc-form-checks">
+                <label class="pc-form-check"><input type="checkbox" name="packages" value="Home Internet" checked /> Home Internet</label>
+                <label class="pc-form-check"><input type="checkbox" name="packages" value="Wireless Internet" /> Wireless Internet</label>
+                <label class="pc-form-check"><input type="checkbox" name="packages" value="Business Internet" /> Business Internet</label>
+                <label class="pc-form-check"><input type="checkbox" name="packages" value="Fiber Internet" /> Fiber Internet</label>
+                <label class="pc-form-check"><input type="checkbox" name="packages" value="TV Bundles" /> TV Bundles</label>
+                <label class="pc-form-check"><input type="checkbox" name="packages" value="Home Phone Service" /> Home Phone Service</label>
+              </div>
+            </fieldset>
+            <label class="pc-form-consent">
+              <input type="checkbox" name="consent" required />
+              <span>
+                By checking this box, I agree to receive calls, texts, and emails — including by autodialer or prerecorded message — about service options from Internet Cable N TV (operated by Zaz International Inc), providers, and marketing partners. Consent is not required to purchase. Message and data rates may apply. Reply STOP to opt out at any time. See our
+                <a href="privacy-policy/">privacy policy</a> and
+                <a href="terms-and-conditions/">terms &amp; conditions</a>.
+              </span>
+            </label>
+            <p class="pc-form-error" data-form-note hidden></p>
+            <button type="submit" class="btn btn-primary">Request Free Quote</button>
+          </form>
+        </div>
       </div>
     </section>
 
