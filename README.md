@@ -18,10 +18,28 @@ Original marketing site for **Internet Cable N TV**, operated by **Zaz Internati
 - `/contact/`
 - Legal: privacy, terms, refunds, disclaimer, TCPA, do-not-sell, cookies, reseller disclosure
 
+## Contact form / SMTP
+
+Home quote + contact forms POST JSON to `api/contact.php`, which sends mail via:
+
+- Host: `mail.careernhustle.com:465` (SSL)
+- From: `Internet Cable N TV <shah@careernhustle.com>`
+- To: `info@internetcablentv.com`
+
+Config lives in `api/config.php`. Requires PHP with OpenSSL on the host (Hostinger-compatible).
+
 ## Preview
+
+Static pages:
 
 ```bash
 python3 -m http.server 8080
+```
+
+For form email locally, serve with PHP instead:
+
+```bash
+php -S 127.0.0.1:8080
 ```
 
 Open `http://localhost:8080/` and `http://localhost:8080/live-agent/`.

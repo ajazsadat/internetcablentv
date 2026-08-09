@@ -3,6 +3,9 @@ RewriteBase /
 Options -Indexes
 DirectoryIndex index.html
 
-# Force trailing slash for directories
+# Force trailing slash for directories (skip files like /api/contact.php)
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^(.*[^/])$ $1/ [R=301,L]
+
+# Pretty alias for the contact API
+RewriteRule ^api/contact/?$ api/contact.php [L,QSA]
