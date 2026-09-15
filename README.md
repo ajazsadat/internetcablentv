@@ -1,45 +1,71 @@
 # Internet Cable N TV
 
-Original marketing site for **Internet Cable N TV**, operated by **Zaz International Inc**.
+Marketing site for **Internet Cable N TV**, operated by **Fico Tech LLC**.
+
+Next.js (App Router, JavaScript) — deploys to Vercel with zero config.
 
 ## Brand
 
-- Organization: Zaz International Inc
-- Address: 3011 E Cedar Sun Trail, Katy, TX 77449-4650, US
+- Organization: Fico Tech LLC
+- Address: 1309 Coffeen Avenue STE 1200, Sheridan, WY 82801, US
 - Email: info@internetcablentv.com
-- Phone: 888-811-2026 (placeholder until a final number is provided)
+- Phone: (888) 238-0951
 - Colors: navy `#0B1F2A`, teal `#1AA6A0`, ember `#E85D04`
-- Logo / favicon: `assets/images/logo-mark.svg`, `assets/icons/`
+- Logo / favicon: `public/assets/images/logo-mark.svg`, `public/assets/icons/`
 
-## Pages
+## Routes
 
-- `/` — custom homepage (hero → process → services list → quote → about → FAQ)
-- `/live-agent/` — layout matched to pcinternetcable live-agent (**no header/footer**)
-- `/contact/`
+- `/` — homepage (hero → process → services list → quote → about → FAQ)
+- `/spectrum-plans`, `/xfinity-plans` — provider comparison pages (hero → plan tiers →
+  services at a glance → side-by-side table → FAQ → lead form)
+- `/contact-us-to-compare` — call-or-message landing page (**no header/footer**)
+- `/live-agent` — same landing layout, without the legal footer (**no header/footer**)
+- `/contact`
 - Legal: privacy, terms, refunds, disclaimer, TCPA, do-not-sell, cookies, reseller disclosure
+- `/sitemap.xml` and `/robots.txt` are generated from `src/lib/site.js`
 
-## Contact form / SMTP
+Pages that render their own chrome are listed in `CHROMELESS_PATHS` (`src/lib/site.js`);
+`Header`, `Footer`, and `SiteDisclaimer` each return `null` for those paths.
 
-Home quote + contact forms POST JSON to `api/contact.php`, which sends mail via:
+## Where content lives
 
-- Host: `mail.careernhustle.com:465` (SSL)
-- From: `Internet Cable N TV <shah@careernhustle.com>`
-- To: `info@internetcablentv.com`
+Copy is data, not markup, so a page's text can be edited without touching JSX:
 
-Config lives in `api/config.php`. Requires PHP with OpenSSL on the host (Hostinger-compatible).
+- `src/lib/site.js` — brand, address, phone, nav, providers dropdown, legal links, disclaimers
+- `src/lib/providerContent.js` — per-provider plans, FAQs, and the shared comparison table
+- `src/lib/legalContent.js` — the eight legal pages
 
-## Preview
+Adding a provider means adding an entry to `PROVIDERS` + `PROVIDER_BY_PATH` in `site.js`,
+an entry in `PROVIDER_CONTENT`, and a two-line route that renders `<ProviderPage>`. The
+dropdown, footer, and sitemap pick it up automatically.
 
-Static pages:
+## Styling
 
-```bash
-python3 -m http.server 8080
+`src/app/globals.css` is the original hand-written design system (no Tailwind). Fonts are
+loaded via `next/font/google` and exposed as `--font-display`, `--font-body`, `--font-syne`,
+and `--font-figtree`.
+
+## Contact form
+
+Both form variants POST JSON to `/api/contact` (`src/app/api/contact/route.js`), which
+validates, appends the lead to a log, then sends mail with nodemailer.
+
+SMTP is read from the environment — copy `.env.local.example` to `.env.local` for local dev,
+and set the same keys in Vercel under **Project → Settings → Environment Variables**:
+
+```
+SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, CONTACT_TO_EMAIL
 ```
 
-For form email locally, serve with PHP instead:
+Leads are appended to `.leads/leads.jsonl` *before* delivery is attempted, so a submission
+survives an SMTP outage. Vercel's filesystem is read-only outside `/tmp`, so in production
+the log falls back to stderr and lands in the function logs.
+
+## Develop
 
 ```bash
-php -S 127.0.0.1:8080
+npm install
+npm run dev     # http://localhost:3000
+npm run build
+npm run lint
 ```
-
-Open `http://localhost:8080/` and `http://localhost:8080/live-agent/`.
