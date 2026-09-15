@@ -123,8 +123,6 @@ export default function Header() {
                     onClick={closeMenus}
                   >
                     <strong>{provider.name}</strong>
-                    <span>{provider.blurb}</span>
-                    <em className="nav-menu-tag">{provider.tech}</em>
                   </Link>
                 ))}
               </div>
@@ -183,10 +181,6 @@ export default function Header() {
             {item.name}
           </Link>
         ))}
-        <Link href="/live-agent" onClick={closeMenus}>
-          Live Agent
-        </Link>
-
         <a className="btn btn-primary" href={`tel:${phone.tel}`}>
           Call {phone.display}
         </a>

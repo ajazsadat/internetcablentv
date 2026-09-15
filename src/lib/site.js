@@ -66,8 +66,8 @@ export const PROVIDERS = [
 /** Primary navigation, mirroring the reference site's shape. */
 export const NAV = [
   { name: 'Home', href: '/' },
-  { name: 'How It Works', href: '/#how-it-works' },
   { name: 'Services', href: '/#services' },
+  { name: 'Why Choose Us', href: '/#choose-us' },
   { name: 'Contact Us to Compare', href: '/contact-us-to-compare' },
   { name: 'Contact', href: '/contact' },
 ];
@@ -87,18 +87,25 @@ export const FOOTER_EXPLORE = [
   { name: 'Home', href: '/' },
   ...PROVIDERS.map((p) => ({ name: `${p.name} Plans`, href: p.href })),
   { name: 'Contact Us to Compare', href: '/contact-us-to-compare' },
+  { name: 'Compare Internet Options', href: '/compare-internet-options' },
   { name: 'How it works', href: '/#how-it-works' },
   { name: 'Services', href: '/#services' },
-  { name: 'Live Agent', href: '/live-agent' },
+  { name: 'Why choose us', href: '/#choose-us' },
   { name: 'Contact', href: '/contact' },
   { name: 'Get a quote', href: '/#quote' },
 ];
 
 /**
- * Standalone landing pages for paid traffic. They render their own chrome, so
- * the shared header, footer, and pre-footer disclaimer all opt out.
+ * The two compare landing pages. They render their own chrome, so the shared
+ * header, footer, and pre-footer disclaimer all opt out.
+ *
+ * /contact-us-to-compare is the one linked from the main nav;
+ * /compare-internet-options is the one the provider pages link to.
  */
-export const CHROMELESS_PATHS = new Set(['/live-agent', '/contact-us-to-compare']);
+export const CHROMELESS_PATHS = new Set([
+  '/contact-us-to-compare',
+  '/compare-internet-options',
+]);
 
 /** Provider pages swap the header strip for the carrier-specific disclaimer. */
 export const PROVIDER_BY_PATH = {

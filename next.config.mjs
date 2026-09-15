@@ -6,7 +6,8 @@ const nextConfig = {
       { source: '/spectrum', destination: '/spectrum-plans', permanent: true },
       { source: '/xfinity', destination: '/xfinity-plans', permanent: true },
       { source: '/compare', destination: '/contact-us-to-compare', permanent: true },
-      { source: '/compare-internet-options', destination: '/contact-us-to-compare', permanent: true },
+      // Folded into the two compare pages; keep the old landing URL working.
+      { source: '/live-agent', destination: '/contact-us-to-compare', permanent: true },
     ];
   },
 };

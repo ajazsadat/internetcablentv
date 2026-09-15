@@ -34,6 +34,12 @@ html {
   scroll-behavior: smooth;
 }
 
+/* The header and its disclaimer strip are sticky, so anchor targets have to
+   reserve their combined height or the section heading lands underneath. */
+section[id] {
+  scroll-margin-top: calc(var(--header-h) + 1rem);
+}
+
 body {
   margin: 0;
   min-height: 100%;
@@ -561,6 +567,40 @@ a:hover {
     grid-template-columns: 140px 1.1fr 1.4fr;
     align-items: baseline;
     gap: 1.5rem;
+  }
+}
+
+/* Why choose us — 3-up card grid */
+
+.pillars {
+  display: grid;
+  gap: 1rem;
+}
+
+.pillar {
+  padding: 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  border-top: 3px solid var(--signal);
+}
+
+.pillar h3 {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.pillar p {
+  margin: 0;
+  color: var(--muted);
+}
+
+@media (min-width: 800px) {
+  .pillars {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
   }
 }
 
@@ -1819,295 +1859,321 @@ a:hover {
 }
 
 /* ========================================================================
-   Standalone landing pages (live agent / contact to compare)
+   Standalone compare landing pages
+
+   Layout and palette both mirror the reference site: a textured page, a
+   dark/light card pair, the wordmark, then the disclosure block. The four
+   raster assets ship in the reference's purple and are used as-is, so the
+   palette below matches them rather than the site's navy/ember branding.
    ======================================================================== */
 
-.site-main-bare {
+.lac-page {
+  --lac-tint: #efe8fb;
+  --lac-accent: #5a23b9;
+  --lac-accent-bright: #6713db;
+  --lac-divider: #8c52f6;
+  --lac-card-border: #5c11cf;
+  --lac-muted: #4b3f66;
+
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
+  background-color: var(--lac-tint);
+  background-image: url("/assets/images/support/bg-box.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: var(--font-body);
 }
 
-.la-page {
-  --la-orange: #f17a45;
-  --la-orange-deep: #e86530;
-  --la-ink: #171717;
-  --la-card: #ffffff;
-  position: relative;
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: 3.5rem 1.25rem 2.5rem;
-  overflow: hidden;
-  background:
-    radial-gradient(900px 520px at 8% 92%, rgba(241, 122, 69, 0.16), transparent 55%),
-    radial-gradient(700px 420px at 100% 0%, rgba(241, 122, 69, 0.12), transparent 50%),
-    linear-gradient(180deg, #fff7f2 0%, #fffdfb 45%, #fff6f0 100%);
-  color: var(--la-ink);
-  font-family: var(--font-figtree), "Figtree", sans-serif;
-}
-
-.la-decor {
-  position: absolute;
-  inset: auto auto 8% 4%;
-  width: 180px;
-  height: 180px;
-  background-image: radial-gradient(var(--la-orange) 1.4px, transparent 1.4px);
-  background-size: 16px 16px;
-  opacity: 0.35;
-  pointer-events: none;
-}
-
-.la-content {
-  position: relative;
-  z-index: 1;
-  width: min(100%, 980px);
-  display: grid;
-  gap: 2.75rem;
-  justify-items: center;
-}
-
-.la-heading {
-  margin: 0;
-  text-align: center;
-  font-family: var(--font-syne), "Syne", serif;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.08;
-  display: grid;
-  gap: 0.2rem;
-}
-
-.la-heading span:first-child {
-  font-size: clamp(1.7rem, 3.8vw, 2.55rem);
-  color: var(--la-ink);
-}
-
-.la-heading-accent {
-  font-size: clamp(1.9rem, 4.4vw, 3rem);
-  color: var(--la-orange);
-}
-
-.la-grid {
+.lac-inner {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   width: 100%;
-  display: grid;
-  gap: 1.25rem;
+  max-width: 1340px;
+  margin-inline: auto;
+  padding: 0.5rem 0.625rem 1.125rem;
 }
 
-.la-card {
-  background: var(--la-card);
-  border: 1px solid rgba(23, 23, 23, 0.08);
-  border-radius: 18px;
-  box-shadow: 0 14px 40px rgba(120, 60, 30, 0.08);
-  padding: 2rem 1.5rem 1.75rem;
-  display: grid;
-  justify-items: center;
-  text-align: center;
-  gap: 0.55rem;
+.lac-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-top: 1rem;
 }
 
-.la-icon {
-  width: 64px;
-  height: 64px;
-  border-radius: 999px;
-  display: grid;
-  place-items: center;
-  color: #fff;
-  background: linear-gradient(160deg, var(--la-orange), var(--la-orange-deep));
-  margin-bottom: 0.35rem;
-}
-
-.la-card h2 {
+.lac-heading {
+  max-width: 97%;
   margin: 0;
-  font-size: 1.65rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-}
-
-.la-sub {
-  margin: 0;
-  color: var(--la-orange);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
   font-weight: 700;
-  font-size: 1rem;
-  max-width: 28ch;
-  line-height: 1.35;
-}
-
-.la-rule {
-  width: 56px;
-  height: 3px;
-  border-radius: 999px;
-  background: var(--la-orange);
-  margin: 0.45rem 0 0.7rem;
-}
-
-.la-call-btn,
-.la-chat-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 54px;
-  border-radius: 12px;
-  padding: 0.7rem 1.15rem;
-  text-decoration: none;
-  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-}
-
-.la-call-btn:hover,
-.la-chat-btn:hover {
-  transform: translateY(-2px);
-}
-
-.la-call-btn {
-  gap: 0.75rem;
-  background: #fff;
-  border: 2px solid var(--la-orange);
-  color: var(--la-ink);
-  min-width: min(100%, 280px);
-}
-
-.la-call-icon {
-  width: 34px;
-  height: 34px;
-  border-radius: 999px;
-  display: grid;
-  place-items: center;
-  color: var(--la-orange);
-  background: rgba(241, 122, 69, 0.12);
-  flex: 0 0 auto;
-}
-
-.la-call-text {
-  display: grid;
-  justify-items: start;
-  gap: 0.05rem;
-  line-height: 1.15;
-}
-
-.la-call-text strong {
-  font-size: 0.95rem;
-}
-
-.la-call-text em {
-  font-style: normal;
-  color: var(--la-orange);
-  font-weight: 800;
-  font-size: 1.15rem;
-  letter-spacing: 0.01em;
-}
-
-.la-chat-btn {
-  min-width: min(100%, 220px);
-  background: var(--la-orange);
-  color: #fff;
-  font-weight: 800;
-  font-size: 1.05rem;
-  border: 2px solid var(--la-orange);
-}
-
-.la-chat-btn:hover {
-  background: var(--la-orange-deep);
-  border-color: var(--la-orange-deep);
-}
-
-.la-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-top: 0.5rem;
-}
-
-.la-brand-mark {
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  background: center / cover no-repeat url("/assets/images/logo-mark.svg");
-  box-shadow: 0 8px 18px rgba(241, 122, 69, 0.28);
-}
-
-.la-brand strong,
-.la-brand small {
-  display: block;
-  line-height: 1.1;
-}
-
-.la-brand strong {
-  font-size: 0.95rem;
-  letter-spacing: 0.04em;
-}
-
-.la-brand small {
-  margin-top: 0.2rem;
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
-  color: rgba(23, 23, 23, 0.65);
-}
-
-/* Standalone landing footer — disclosure, legal links, registered address.
-   These pages render no site header/footer, so the notices live here. */
-.la-footer {
-  width: 100%;
-  display: grid;
-  gap: 0.7rem;
-  justify-items: center;
-  padding-top: 0.5rem;
-  border-top: 1px solid rgba(23, 23, 23, 0.1);
-}
-
-.la-disclosure {
-  margin: 0;
-  max-width: 78ch;
+  line-height: 1.21;
   text-align: center;
-  font-size: 0.78rem;
-  line-height: 1.6;
-  color: rgba(23, 23, 23, 0.66);
+  text-transform: capitalize;
+  color: #000;
 }
 
-.la-legal {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+.lac-heading span {
+  color: var(--lac-accent);
+}
+
+.lac-underline {
+  display: none;
+  height: auto;
+  width: 94px;
+  margin-top: 0.75rem;
+}
+
+/* ── Card pair ──────────────────────────────────────────────────────── */
+
+.lac-cards {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.3rem 1rem;
+  gap: 1rem 1.375rem;
+  width: 100%;
+  margin-top: 1.5rem;
 }
 
-.la-legal a {
-  font-size: 0.75rem;
-  color: rgba(23, 23, 23, 0.55);
+.lac-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 46vh;
+  padding: 1.5rem 1rem;
+  border-radius: 14px;
+}
+
+.lac-card-dark {
+  background-color: var(--lac-tint);
+  background-image: url("/assets/images/support/card-box.png");
+  background-position: center;
+  background-size: cover;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.28);
+}
+
+.lac-card-dark .lac-card-heading {
+  color: #fff;
+}
+
+.lac-card-light {
+  background: #fff;
+  border: 2px solid var(--lac-card-border);
+}
+
+.lac-card-light .lac-card-heading {
+  color: #000;
+}
+
+.lac-card-icon {
+  height: auto;
+  width: 72px;
+}
+
+.lac-card-heading {
+  max-width: 70%;
+  margin: 0.75rem 0 0;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.lac-card-rule {
+  display: block;
+  width: 15%;
+  height: 2.5px;
+  margin-top: 0.75rem;
+  background-color: var(--lac-divider);
+}
+
+.lac-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 70%;
+  margin-top: 1.25rem;
+  padding: 0.625rem 0.5rem;
+  border: 2px solid var(--lac-accent);
+  border-radius: 6px;
+  background: #fff;
+  text-decoration: none;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.lac-action:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(31, 11, 66, 0.22);
+}
+
+.lac-action-icon {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  color: var(--lac-accent-bright);
+}
+
+.lac-action-text {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--lac-accent);
+}
+
+/* ── Wordmark ───────────────────────────────────────────────────────── */
+
+.lac-brand {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.lac-brand a {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.375rem;
   text-decoration: none;
 }
 
-.la-legal a:hover {
-  color: var(--la-orange);
-  text-decoration: underline;
+.lac-brand-mark {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
 }
 
-.la-address {
-  margin: 0;
+/* Mirrors the site header's wordmark: name over the operating-company line. */
+.lac-brand-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.125rem;
   text-align: center;
-  font-size: 0.75rem;
-  color: rgba(23, 23, 23, 0.55);
 }
 
-@media (min-width: 860px) {
-  .la-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
+.lac-brand-text strong {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #000;
+}
+
+.lac-brand-text small {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--lac-muted);
+}
+
+/* ── Disclosure block ───────────────────────────────────────────────── */
+
+.lac-foot {
+  width: 100%;
+  margin-top: auto;
+  padding-top: 2rem;
+}
+
+.lac-disclosure {
+  max-width: 48rem;
+  margin: 0 auto;
+  font-size: 0.6875rem;
+  line-height: 1.6;
+  text-align: center;
+  color: var(--lac-muted);
+}
+
+.lac-address {
+  margin: 0.75rem 0 0;
+  font-size: 0.6875rem;
+  text-align: center;
+  color: var(--lac-muted);
+}
+
+@media (min-width: 768px) {
+  .lac-inner {
+    padding-block: 1.875rem;
   }
 
-  .la-card {
-    padding: 2.35rem 2rem 2rem;
+  .lac-head {
+    padding-top: 0;
+  }
+
+  .lac-heading {
+    max-width: 67%;
+    font-size: 2.8125rem;
+    line-height: 1.2;
+  }
+
+  .lac-underline {
+    display: block;
+  }
+
+  .lac-cards {
+    margin-top: 2rem;
+  }
+
+  .lac-card {
+    width: 40%;
+    min-height: 60vh;
+  }
+
+  .lac-card-icon {
+    width: 88px;
+  }
+
+  .lac-card-heading {
+    max-width: 61%;
+    font-size: 2.125rem;
+    line-height: 1.18;
+  }
+
+  .lac-card-rule {
+    width: 14%;
+  }
+
+  .lac-action {
+    width: 62%;
+    gap: 14px;
+  }
+
+  .lac-action-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .lac-action-text {
+    font-size: 1.375rem;
+  }
+
+  .lac-brand {
+    margin-top: 1rem;
+  }
+
+  .lac-brand-text {
+    font-size: 1.3125rem;
+  }
+
+  .lac-disclosure,
+  .lac-address {
+    font-size: 0.75rem;
   }
 }
 
-@media (max-width: 720px) {
-  .la-page {
-    padding-top: 2.5rem;
-  }
-
-  .la-decor {
-    width: 120px;
-    height: 120px;
+@media (prefers-reduced-motion: reduce) {
+  .lac-action:hover {
+    transform: none;
   }
 }
 
@@ -2194,7 +2260,7 @@ body {
   left: 50%;
   translate: -50% 0;
   z-index: 60;
-  width: 19rem;
+  width: 12rem;
   padding: 0.45rem;
   display: grid;
   gap: 0.15rem;
@@ -2233,9 +2299,7 @@ body {
 }
 
 .nav-menu-item {
-  position: relative;
-  display: grid;
-  gap: 0.15rem;
+  display: block;
   padding: 0.65rem 0.75rem;
   border-radius: 10px;
   text-decoration: none;
@@ -2254,26 +2318,8 @@ body {
   color: var(--ink);
 }
 
-.nav-menu-item span {
-  font-size: 0.8rem;
-  line-height: 1.4;
-  color: var(--muted);
-}
-
 .nav-menu-item[aria-current="page"] strong {
   color: var(--signal-deep);
-}
-
-.nav-menu-tag {
-  position: absolute;
-  top: 0.65rem;
-  right: 0.75rem;
-  font-style: normal;
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ember);
 }
 
 /* Mobile nav grouping */

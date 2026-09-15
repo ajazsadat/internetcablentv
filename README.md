@@ -15,11 +15,13 @@ Next.js (App Router, JavaScript) — deploys to Vercel with zero config.
 
 ## Routes
 
-- `/` — homepage (hero → process → services list → quote → about → FAQ)
+- `/` — homepage (hero → process → services list → why choose us → quote → about → FAQ)
 - `/spectrum-plans`, `/xfinity-plans` — provider comparison pages (hero → plan tiers →
   services at a glance → side-by-side table → FAQ → lead form)
-- `/contact-us-to-compare` — call-or-message landing page (**no header/footer**)
-- `/live-agent` — same landing layout, without the legal footer (**no header/footer**)
+- `/contact-us-to-compare` — call-or-message landing page, linked from the main nav
+  (**no header/footer**)
+- `/compare-internet-options` — the same landing page, linked from the provider pages
+  (**no header/footer**)
 - `/contact`
 - Legal: privacy, terms, refunds, disclaimer, TCPA, do-not-sell, cookies, reseller disclosure
 - `/sitemap.xml` and `/robots.txt` are generated from `src/lib/site.js`
@@ -42,8 +44,12 @@ dropdown, footer, and sitemap pick it up automatically.
 ## Styling
 
 `src/app/globals.css` is the original hand-written design system (no Tailwind). Fonts are
-loaded via `next/font/google` and exposed as `--font-display`, `--font-body`, `--font-syne`,
-and `--font-figtree`.
+loaded via `next/font/google` and exposed as `--font-display` and `--font-body`.
+
+The two compare landing pages (`.lac-*`) are the one exception to the navy/teal/ember
+palette: their layout and colour are both carried over from the reference site, because the
+four raster assets in `public/assets/images/support/` ship in that purple and are used
+as-is. Their palette lives in the `--lac-*` custom properties on `.lac-page`.
 
 ## Contact form
 

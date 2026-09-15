@@ -69,7 +69,7 @@ export default function ProviderPage({ content }) {
 
         <section className="prov-strip" aria-label="Get help comparing">
           <div className="wrap prov-strip-inner">
-            <Link className="btn btn-primary" href="/contact-us-to-compare">
+            <Link className="btn btn-primary" href="/compare-internet-options">
               Contact us to compare
             </Link>
             <a className="btn btn-ghost" href={`tel:${phone.tel}`}>
@@ -376,7 +376,7 @@ export default function ProviderPage({ content }) {
       <StickyCallBar
         phone={phone}
         label="Call now"
-        secondaryHref="/contact-us-to-compare"
+        secondaryHref="/compare-internet-options"
         secondaryLabel={`Compare ${name}`}
       />
     </>

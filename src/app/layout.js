@@ -1,4 +1,4 @@
-import { Bricolage_Grotesque, Manrope, Syne, Figtree } from 'next/font/google';
+import { Bricolage_Grotesque, Manrope } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -13,19 +13,6 @@ const display = Bricolage_Grotesque({
 
 const body = Manrope({
   variable: '--font-body',
-  subsets: ['latin'],
-  display: 'swap',
-});
-
-/** Used only by the standalone connect pages, which follow their own type scale. */
-const syne = Syne({
-  variable: '--font-syne',
-  subsets: ['latin'],
-  display: 'swap',
-});
-
-const figtree = Figtree({
-  variable: '--font-figtree',
   subsets: ['latin'],
   display: 'swap',
 });
@@ -66,10 +53,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="en"
-      className={`${display.variable} ${body.variable} ${syne.variable} ${figtree.variable}`}
-    >
+    <html lang="en" className={`${display.variable} ${body.variable}`}>
       <body>
         {/* Reveal animations start hidden and are flipped by IntersectionObserver,
             so without scripting the content must be forced visible. */}

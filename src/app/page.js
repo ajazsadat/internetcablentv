@@ -59,6 +59,21 @@ const SERVICES = [
   },
 ];
 
+const PILLARS = [
+  {
+    title: 'Nationwide comparison',
+    body: 'From metro high-rises to rural routes, we compare what the major providers can actually install at your address — and keep the conversation human.',
+  },
+  {
+    title: 'Current offers only',
+    body: 'Promotions change constantly. We check pricing and availability at the time of your call, so you aren’t quoted a plan that expired last month.',
+  },
+  {
+    title: 'No pretending to be the carrier',
+    body: `${SITE.brandFull} is an independent reseller. We tell you up front who bills you, who installs, and who supports the line once you enroll.`,
+  },
+];
+
 const FAQS = [
   {
     q: 'What happens after I submit the form?',
@@ -106,7 +121,7 @@ export default function HomePage() {
             <a className="btn btn-primary" href={`tel:${phone.tel}`}>
               Call {phone.display}
             </a>
-            <Link className="btn btn-ghost" href="/live-agent">
+            <Link className="btn btn-ghost" href="/contact-us-to-compare">
               Talk to a live agent
             </Link>
           </div>
@@ -156,6 +171,27 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="section" id="choose-us">
+        <div className="wrap">
+          <div className="section-head">
+            <p className="eyebrow">Why choose us</p>
+            <h2>Why customers choose us</h2>
+            <p>
+              One call, an honest read on what’s available, and a clean hand-off to the provider you
+              pick.
+            </p>
+          </div>
+          <div className="pillars">
+            {PILLARS.map((pillar, index) => (
+              <Reveal as="article" key={pillar.title} className="pillar" delay={index * 90}>
+                <h3>{pillar.title}</h3>
+                <p>{pillar.body}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="section quote" id="quote">
         <div className="wrap quote-grid">
           <div className="quote-aside">
@@ -164,8 +200,8 @@ export default function HomePage() {
               <h2>Get A Quote</h2>
               <p>
                 Share a few details and we’ll follow up with options available near you. Prefer to
-                talk now? Call {phone.display} or visit our <Link href="/live-agent">live agent</Link>{' '}
-                page.
+                talk now? Call {phone.display} or{' '}
+                <Link href="/contact-us-to-compare">connect with a live agent</Link>.
               </p>
             </div>
             <ul className="quote-points">
