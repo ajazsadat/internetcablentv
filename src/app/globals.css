@@ -2117,6 +2117,15 @@ a:hover {
    friendly; a no-JS render is forced visible by the <noscript> block in layout.
    ========================================================================== */
 
+/* The left/right variants start translated sideways, which would widen the
+   document and expose a horizontal scrollbar until the element is revealed.
+   `clip` contains that without turning <body> into a scroll container, so the
+   sticky header and the sticky call bar keep working (`hidden` would break
+   both). */
+body {
+  overflow-x: clip;
+}
+
 [data-reveal] {
   opacity: 0;
   transition:
