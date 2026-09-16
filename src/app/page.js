@@ -122,7 +122,7 @@ export default function HomePage() {
               Call {phone.display}
             </a>
             <Link className="btn btn-ghost" href="/contact-us-to-compare">
-              Talk to a live agent
+              Contact us to compare
             </Link>
           </div>
         </div>
@@ -201,7 +201,7 @@ export default function HomePage() {
               <p>
                 Share a few details and we’ll follow up with options available near you. Prefer to
                 talk now? Call {phone.display} or{' '}
-                <Link href="/contact-us-to-compare">connect with a live agent</Link>.
+                <Link href="/contact-us-to-compare">contact us to compare</Link>.
               </p>
             </div>
             <ul className="quote-points">
