@@ -34,7 +34,8 @@ export default function LiveAgentConnect({ disclosure }) {
       <div className="lac-inner">
         <div className="lac-head">
           <h1 className="lac-heading">
-            How would you like to connect for <span>Internet and TV Services?</span>
+            How would you prefer to connect with us for{' '}
+            <span>Cable, Internet Services, and Assistance?</span>
           </h1>
           <Image
             src="/assets/images/support/underline.png"
